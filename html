@@ -78,7 +78,70 @@
 十二. lable标签的作用？
       label标签用来控制表单控件之间的关系，当用户选择该标签时，浏览器会自动将焦点转到和标签相关的表单控件，但是label标签的for属性应该与当前标签的id属性相同。
 十三. iframe有什么缺点？
+       <iframe src=""></iframe>,该标签是一个内联框架元素，有效的将另一个html页面嵌入到当前页面中。
+       缺点：1.iframe会阻塞主页面的onload事件。
+             2.iframe和主页面共享连接池，会影响页面的并行加载。
+             3.搜索引擎的检索程序无法解读这种页面，不利于SEO（搜索引擎优化）
+      为了避免以上的缺点，可以在js中动态的加载iframe的src属性。
 十四. html的form如何关闭自动完成功能的？
+       给form标签或者某个input标签设置为autocomplete=off
+十五. //如何实现多个标签也之间的通信？
+      利用localstoragehe sessionstorage
+      用cookie
+      用web worker
+十六. webSocket如何兼容低浏览器？
+       Adobe Flash Socket 、
+       ActiveX HTMLFile (IE) 、
+       基于 multipart 编码发送 XHR 、
+       基于长轮询的 XHR
+十七. 页面可见性（page visibility API）有哪些用途?
+       通过visibilityState的值可以确定页面当前是否可见，以及计算页面打开的时间。在页面被最小化或者切换至后台应用程序时，可以暂停动画，视频和ajax轮询。
+            document.visibilityState：表示下面 4 个可能状态的值
+                   hidden：页面在后台标签页中或者浏览器最小化
+                   visible：页面在前台标签页中
+                   prerender：页面在屏幕外执行预渲染处理 document.hidden 的值为 true
+                   unloaded：页面正在从内存中卸载
+            所以，可以通过document.hidden可以确定页面是否被隐藏
+十八. 如何咋页面上实现一个圆形的可点击区域
+      map+area或者svg
+      border-radius
+      纯js实现 需要求一个点在不在圆上简单算法、获取鼠标坐标等等
+
+//第一种 使用image map
+<img id="blue" class="click-area" src="blue.gif" usemap="#Map" /> 
+<map name="Map" id="Map" class="click-area">  <area shape="circle" coords="50,50,50"/>
+</map>
+#blue{
+ cursor:pointer;
+ width:100px;
+ height:100px;
+}
+//第二种 使用CSS border-radius
+<div id="red" class="click-area" ></div>
+#red{  
+ cursor:pointer;
+ background:red;  
+ width:100px;  
+ height:100px;  
+ border-radius:50%;  
+} 
+//第三种 使用js检测鼠标位置
+<div id="yellow" class="click-area" ></div>
+$("#yellow").on('click',function(e) {    
+  var r = 50; 
+  var x1 = $(this).offset().left+$(this).width()/2;            
+  var y1 = $(this).offset().top+$(this).height()/2;   
+  var x2= e.clientX;  
+  var y2= e.clientY;    
+  var distance = Math.abs(Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)));    
+  if (distance <= 50)  
+    alert("Yes!");    
+});  
+十九. 实现不使用 border 画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果
+     <div style="height:1px;overflow:hidden;background:red"></div>
+二十. 网页验证码时干嘛用的？为了解决什么安全问题？
+      1.用于区分用户是计算机还是人，可以防止恶意破解密码，刷票，论坛灌水等等。
+      2.有效的防止黑客对某一用户的特定程序暴力破解方式进行不断的登陆尝试。      
 
 
 
