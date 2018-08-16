@@ -77,6 +77,9 @@
             sessionstorage：在当前的浏览器窗口关闭后自动删除。
 十二. lable标签的作用？
       label标签用来控制表单控件之间的关系，当用户选择该标签时，浏览器会自动将焦点转到和标签相关的表单控件，但是label标签的for属性应该与当前标签的id属性相同。
+      使用方法一：<label for="same">Num</label>
+                  <input type="text" name="" id="same">
+      使用方法二：<label>Date<input type="text" name=""></label>
 十三. iframe有什么缺点？
        <iframe src=""></iframe>,该标签是一个内联框架元素，有效的将另一个html页面嵌入到当前页面中。
        缺点：1.iframe会阻塞主页面的onload事件。
@@ -89,6 +92,11 @@
       利用localstoragehe sessionstorage
       用cookie
       用web worker
+      webSocket
+      storage事件（localStorage API）
+      SharedWorker（Web Worker API）
+      postMessage
+      iframe+contentWindow
 十六. webSocket如何兼容低浏览器？
        Adobe Flash Socket 、
        ActiveX HTMLFile (IE) 、
@@ -141,7 +149,12 @@ $("#yellow").on('click',function(e) {    
      <div style="height:1px;overflow:hidden;background:red"></div>
 二十. 网页验证码时干嘛用的？为了解决什么安全问题？
       1.用于区分用户是计算机还是人，可以防止恶意破解密码，刷票，论坛灌水等等。
-      2.有效的防止黑客对某一用户的特定程序暴力破解方式进行不断的登陆尝试。      
+      2.有效的防止黑客对某一用户的特定程序暴力破解方式进行不断的登陆尝试。
+二十一. title和h1的区别，b和strong的区别，em和i的区别？
+       title只是表示只是一个标题，没有特殊的效果，没有明确意义，而h1有明确的意义，h从1到6有明确的层次。
+       b是粗体文本，效果显示文字加粗，strong是强调文本，有语气加强的意思，效果也为文字加粗。
+       em表示的是强调文本，而i的内容展示为斜体。
+二十二.   
 
 
 

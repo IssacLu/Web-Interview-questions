@@ -1,0 +1,7 @@
+一. display:none和visibility：hidden有什么区别？
+    联系：他们都可以让元素不可见，对元素隐藏
+    区别：1. display：none会让元素从渲染树中消失，渲染的时候不占据任何空间；visibility：hidden不会让元素从渲染树上消失，渲染时元素继续占据空间，只是内容不可见而已。
+         2. diaplay：none是非继承属性，子孙节点消失是由于元素从渲染树消失造成的。
+            visibility：hidden是继承属性，子孙节点消失时由于继承了父节点的hidden，通过设置子节点的visibility：visible可以让子孙节点显示。
+         3. 修改元素的dispiay通常会造成文档重排，修改visibility只会造成元素的重绘。
+         4. 读屏器不会读到display：none元素的内容，但是可以读到visibility元素的内容。
