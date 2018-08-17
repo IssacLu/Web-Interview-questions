@@ -5,3 +5,47 @@
             visibility：hidden是继承属性，子孙节点消失时由于继承了父节点的hidden，通过设置子节点的visibility：visible可以让子孙节点显示。
          3. 修改元素的dispiay通常会造成文档重排，修改visibility只会造成元素的重绘。
          4. 读屏器不会读到display：none元素的内容，但是可以读到visibility元素的内容。
+二. css中hack原理以及常用的hack
+    原理：由于不同的浏览器对css的支持和解析的结果不一样，css中的优先级也不一样，所以可以针对不同的浏览器来写不同的css
+    常用的hack：css类内部hack（属性hack）
+                选择器hack
+                HTML头部（if IE -> end if）引用hark（IE条件注释）
+三. link和@import的区别？
+    1. link是html的方式，@import是css的方式。
+    2. link支持并行下载，@import只能串行下载（由于嵌套过多）。
+    3. link可以通过rel=“alternate stylesheet”指定备选样式。
+    4. 浏览器对link的支持早于对@import的支持，可以使用@import实现对老式浏览器的样式隐藏。
+    5. @import必须在样式规则之前。
+    总体来说：link优于@import。
+四. css中的继承属性有哪些？
+     1.文字排版的属性：font
+         word-break:在适当的点换行（keep-all半角空格或者连字符换行，break-all允许在单词内换行）
+         letter-spacing:设置元素之间的字母间距。eg：letter-specing:10px,
+         text-align: 设置元素文本的水平对齐方式。
+         text-indent: 设置文本块中首行文字的缩进
+         text-rendering: 浏览器的渲染引擎如何渲染字体
+         word-spacing:段落中的字母间距
+         white-space:设置如何处理元素内的空白
+         text-transform: 控制文本的大小写（uppercase全部大写，lowercase全部小写，capitalize首字母大写）
+         text-shadow: 设置文本的阴影效果
+     2.列表元素：list-style
+     3.表格元素：border-collapse
+     4.line-height   color    visibility    cursor(光标显示的类型)
+五. display ,float，position的关系
+     display是规定元素生成框的类型
+     float: 是元素的浮动
+     position: 规定元素的定位类型
+     关系：1.如果display：none，则元素隐藏，不生成元素框，那么position和float都不起作用
+          2.如果display:block,position: absolute/fixed,float: none,那么框的位置将由该框的包含块和top，left，right，bottom确定
+          3.如果display不为none，float不为none，则该框浮动
+      总结：绝对定位，浮动，根元素都需要调整display
+六. 外边距折叠（collapsing margin）
+    相邻的两个或多个margin会合并成一个margin，叫做外边距折叠。
+    规则：1. 两个或多个相邻的普通流中的块元素垂直方向上的margin会折叠
+         2. 浮动元素或inline-block元素或绝对定位的元素margin不会和垂直方向上的其他元素的margin折叠
+         3. 创建了块级格式化上下文的元素，不会和他的子元素发生margin折叠
+         4. 元素自身的margin-bottom和margin-top响铃时也会折叠
+七. 介绍一下标准的css盒模型，低版本IE盒模型有什么不同？
+    
+
+
