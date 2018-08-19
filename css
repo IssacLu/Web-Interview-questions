@@ -46,6 +46,94 @@
          3. 创建了块级格式化上下文的元素，不会和他的子元素发生margin折叠
          4. 元素自身的margin-bottom和margin-top响铃时也会折叠
 七. 介绍一下标准的css盒模型，低版本IE盒模型有什么不同？
-    
+     盒模型有两种:W3C标准的盒模型和IE盒模型;
+     盒模型都包括:content(内容) ,padding（内边距） ,margin（外边距）, border(边框);
+     区别:W3C标准盒模型的属性width和height只包括content;
+          IE盒模型的属性width和height=content+padding+border
+     注：margin只确定盒子占据的位置，不确定盒子的大小
+八. CSS选择器有哪些？
+    标签选择器（h1，div），类选择器(.classname)，id选择器(#idname)，相邻选择器(div+p)，
+    子选择器(ul>li)，属性选择器(a[rel = "external"]), 后代选择器（div h1），伪类选择器（a：hover）
+    通配符选择器（*）
+九. CSS优先级如何计算？
+    1. 如果对于同一个元素的css优先级相同，并且定义了不同的样式，则靠后的css会应用到元素上，此时只由css的位置先后确定
+    2. 继承样式优先级低于设定的样式优先级，即离得近的优先级高。
+    3. 优先级排序：内联 > id选择器 > 类选择器=伪类选择器=属性选择器 > 标签选择器 > 通用选择器 > 继承选择器
+    4. 优先级权重：内联样式1000 > id选择器100 > 类选择器10 > 标签选择器1
+    5. ！import优先级比内联样式的优先级高。
+十. css3新增的伪类有哪些？
+    p：first-of-type 选择属于其父元素的首个p元素
+    p：last-of-type  选择属于其父元素的最后一个p元素
+    p：only-of-type  选择属于其父元素的特定类型的唯一子元素的每个p元素
+    p：only-child    选择属于其父元素的唯一一个子元素的每个p元素
+    p：nth-child（2） 选择属于父元素的第二个子元素的每个p元素
+   ：after：在元素内容之后添加元素，可用于清除浮动
+   ：before：在元素内容之前添加元素
+   ：enabled：控制表单的启用状态
+   ：disabled：控制表单的禁用状态
+   ：checked： 单选框或复选框被选中
+十一. 如何居中div，如何居中浮动元素？如何让绝对定位的div居中
+      1. 居中div：div{
+      	width: 200px；
+      	margin :0 auto;
+      }
+      2. 居中一个浮动元素div
+      div:{
+      	width: 300px;
+      	height: 300px;
+        float: left;
+        position: relative;
+        background: red;
+        left: 50%;
+      }
+      p{
+      	height: 300px;
+      	line-height: 300px;
+      }
+    <p><div></div></p>
+    3. 让绝对定位的div居中
+       div{
+       	width: 100px;
+       	height: 100px;
+       	position: absolute;
+       	background: red;
+       	left: 50%;
+       	top: 50%;
+       	margin-top: -50px;//高度的一半
+       	margin-left：-50px;//宽度的一半
+       }
+       通常不确定宽高，这个方法有缺陷，所以可以用transform代替margin。
+         transform: translate(-50%, -50%); 
+十二. display有哪些值？
+      none：此元素不会被显示
+      block：此元素将显示为块级元素
+      inline：此元素将显示为行内元素
+      inline-block： 此元素显示为行内块元素
+      list-item： 此元素作为列表显示
+      table： 此元素作为块级表格显示
+      inherit：此元素继承父元素display属性的值
+十三. position的属性值的定位原点是什么？
+      relative：相对定位，相对于其正常的位置进行定位
+      absolute：绝对定位，相对于值不为static的第一个父元素进行定位
+      fixed：绝对定位，相对于正常位置进行定位
+      static：默认值。没有定位，元素出现在正常流中
+      inherit：继承父元素的podition属性的值
+十四. css3有哪些新特性？
+      1. 边框：boeder-radius：圆角边框
+              box-shadow：向矩形添加阴影
+              border-image：使用图片开绘制边框
+      2. 文字效果：text-shadow：向文字添加阴影
+                  word-wrap：文字自动换行
+      3. 多列布局：clumn-count 等
+      4. 2D转换： translate（）eg：transform: translate(50px,100px)平移
+                  rotate（）eg：transform: rotate(30deg)旋转
+                  scale（）eg：transform: scale(2,4) 转换为原来的几倍
+                  skew（） eg：transform: skew(30deg,20deg)围绕X,Y轴，把元素旋转度数
+                  matrix（）把所有2D转换结合在一起，需要6个参数
+      5. 过渡：transitin：必须规定过渡的时间，不然没有效果
+      6. 动画：@keyframes 
+               animation 
+十五. 用纯css创建一个三角形
+
 
 
