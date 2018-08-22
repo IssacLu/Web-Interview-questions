@@ -44,7 +44,10 @@
     规则：1. 两个或多个相邻的普通流中的块元素垂直方向上的margin会折叠
          2. 浮动元素或inline-block元素或绝对定位的元素margin不会和垂直方向上的其他元素的margin折叠
          3. 创建了块级格式化上下文的元素，不会和他的子元素发生margin折叠
-         4. 元素自身的margin-bottom和margin-top响铃时也会折叠
+         4. 元素自身的margin-bottom和margin-top相邻时也会折叠
+    折叠计算的规则：1. 两个相邻的外边距都是正数时，折叠结果时他们两者之间较大的值
+                  2. 两个相邻的外边距都是负数时，折叠结果时两者绝对值的较大值
+                  3. 两个外边距一正一负时，折叠结果时两者的相加和
 七. 介绍一下标准的css盒模型，低版本IE盒模型有什么不同？
      盒模型有两种:W3C标准的盒模型和IE盒模型;
      盒模型都包括:content(内容) ,padding（内边距） ,margin（外边距）, border(边框);
@@ -134,6 +137,108 @@
       6. 动画：@keyframes 
                animation 
 十五. 用纯css创建一个三角形
+      思路：把div的宽和高都设置为0，利用border做三角形，设置边框宽度，设置颜色，其中三面透明（transparent）
+      代码:
+         div{
+         	width:0;
+         	height:0;
+         	border-width:30px;
+         	border-style:solid;
+         	border-color:transparent transparent red transparent
+         }
+十六. 一个满屏的品字怎么设计？
+      思路: 三个div,上边的宽100%，下边两个50%,下边两个用浮动处于一行
+      代码：
+         div1{
+         	width: 100%；
+         	height:200px;
+         	blackground:red;
+         }
+         div2{
+         	width: 50%；
+         	height:200px;
+         	blackground:blue;
+         	float: left;
+         }
+        div1{
+         	width: 50%；
+         	height:200px;
+         	blackground:yellow;
+         	float: right;
+         }
+十七. 经常遇到的浏览器的问题有哪些？怎么解决？
+     1. 不同的浏览器的默认的padding和margin不同，
+        解决方法：加一个全局的*{padding:0; margin: 0;}
+     2. IE可以使用获取常规属性的方法来获取自定义属性，也可以使用getAttribute（）获取
+        Firefox只能通过getAttribute（）来获取
+        解决方法：在获取属性名的属性值时只用getAttribute()方法
+     3. png24位的图片在IE6浏览器上出现背景，
+        解决方法是：换成png8位 
+十八. li与li之间有看不见的留白是什么原因？
+       如果要把li横向排列，使用display：inline-block ，而不使用float的话，li中间会有间隔
+       产生原因：浏览器默认会把inline之间的元素的空格或者回车看作空白字符，所以会有一个字符的
+       空白
+         解决方法：1. 把li写在一行，但是代码不太美观
+                  2. 可以将ul的font-size设置为0
+                  3. 使用letter-specing
+                  4. 使用word-specing
+                  5. 使用margin负值
+十九. 为什么初始化css？
+      因为浏览器的兼容性问题，不同的浏览器的有些默认值不同，如果不初始化css的化，同样的样式
+      在不同的浏览器会有不同的效果
+二十. 对BFC规范（块级格式化上下文：block formatting context）的理解？
+      BFC的布局规则：1. 内部的Box会在垂直方向，一个接一个放置
+                 2. Box垂直方向的距离由margin决定。属于同一个BCF的两个相邻Box的margin会发生重叠
+                 3. 每个元素的margin box的左边毁于border box的左边相接触，即使存在浮动也是如此
+                 4. BFC的区域不会与float box重叠
+                 5. BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此
+                 6. 计算BFC的高度是，浮动元素也参与计算
+二十一. css定义的权重
+        规则：标签权重为1，class权重为10，id权重为100
+        例子：h1{}//1
+             .class{}//10
+             #id{} //100
+             #id h1{}//100+1=101
+             .class h1{}//10+1=11
+             .class .class h1{} //10+10+1=21
+        按权重依次相加，如果权重相同，则对于同一个元素的样式是后定义的起作用 
+二十二. box-sizing常用属性
+         content-box//默认的标准盒模型的效果
+         border-box//IE盒模型的效果
+         inherit//继承父元素的box-sizing属性值
+二十三. 浮动和清除浮动
+        浮动：容器不设置高度且子元素浮动时，容器高度不能被内容撑开。此时，内容会溢出到容器外面而
+             影响布局，这种现象成为浮动
+        浮动的元素也已向左或向右移动，直到他的外边缘碰到包含框或者另一个浮动框的边框为止。
+        由于浮动框不在文档的普通流中，所以文档的普通流的块框并不包含浮动的框，浮动的额框会
+        脱离普通文档流
+        清除浮动的方法：
+          1. 在浮动元素之后添加一个空元素，设置clear：both
+          2. 给浮动元素添加overflow：hidden或overflow：auto 。添加overflow之后，浮动元素又
+             回到了容器层，便达到了清除浮动的效果
+          3. 使用：after伪元素，给浮动元素添加伪元素：after：{display：block}
+二十四. 说几种隐藏元素的方法
+        1. display:none 元素隐藏，并且不占用文档流
+        2. visibility:hidden 元素隐藏，但元素占用的空间依然存在
+        3. opacity: 0   是一个元素完全透明
+        4. position：absolute；left设置很大的负值，元素则在可见区域之外
+        5. transform：scale（0），将一个元素缩小为无限小，元素将不可见，但原来的额位置将被保留
+        6. height：0 
+        7. filter：blur（0），将一个元素的模糊度设置为0，从而使这个元素消失在页面中
+二十五. rgba（）和opacity的透明效果有什么不同？
+        rgba（）只是作用于元素自身的颜色或者背景，子元素不会继承透明度
+        opacity作用于元素以及元素内的所有内容，包括文字
+二十六. css属性content有什么作用？
+        content属性用于在before和after伪元素上，为了插入样式和内容    
+二十七. 请解释一下css3的FlexBox（弹性盒布局模型）以及适用场景
+
+二十八. 圣杯布局的实现原理
+二十九. 双飞翼布局实现原理
+三十. 在css样式中常用的px和em有什么区别？
+      px相对于显示器屏幕分辨率，无法使用浏览器字体放大功能
+      em的值并不是固定的，会继承父元素的字体大小：em=像素值/父级font-size
+三十一. 什么时FOUC(Flash of Unstyled Content)？如何避免FOUC？
+三十二. 
 
 
 
